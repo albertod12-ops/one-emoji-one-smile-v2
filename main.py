@@ -1,24 +1,29 @@
 #!/usr/bin/env python3
-"""One Emoji, One Smile — v3.
+"""One Emoji, One Smile — v3: a bouquet.
 
-Writes exactly one emoji to /output/entry.txt: a bouquet,
-flowers offered as a gift — warmth deliberately given.
+The entry is a single emoji, U+1F490 BOUQUET: flowers handed to a
+stranger, a gift rather than a symbol. Writing it is the whole
+program: one character, no trailing newline, world-readable.
 """
 
 import os
 
 EMOJI = "\U0001f490"
+# v3: the gift, not the gesture — flowers handed over, not a symbol.
+OUT_DIR = "/output"
+OUT_PATH = "/output/entry.txt"
 
 
 def main():
-    assert len(EMOJI) == 1, "entry must be exactly one emoji"
-    assert 1 <= len(EMOJI.encode("utf-8")) <= 8, "entry must be 1-8 characters"
+    if len(EMOJI) != 1:
+        raise ValueError("entry must be exactly one emoji")
+    if not 1 <= len(EMOJI.encode("utf-8")) <= 8:
+        raise ValueError("entry must be 1-8 UTF-8 bytes")
     os.umask(0o022)
-    os.makedirs("/output", exist_ok=True)
-    path = "/output/entry.txt"
-    with open(path, "w", encoding="utf-8", newline="") as f:
-        f.write(EMOJI)
-    os.chmod(path, 0o644)
+    os.makedirs(OUT_DIR, exist_ok=True)
+    with open(OUT_PATH, "w", encoding="utf-8", newline="") as handle:
+        handle.write(EMOJI)
+    os.chmod(OUT_PATH, 0o644)
 
 
 if __name__ == "__main__":
