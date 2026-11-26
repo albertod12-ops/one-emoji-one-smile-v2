@@ -1,13 +1,13 @@
 #!/usr/bin/env python3
-"""One Emoji, One Smile — v2.
+"""One Emoji, One Smile — v3.
 
-Writes exactly one emoji to /output/entry.txt: heart hands,
-two hands shaping a heart — warmth deliberately offered.
+Writes exactly one emoji to /output/entry.txt: a bouquet,
+flowers offered as a gift — warmth deliberately given.
 """
 
 import os
 
-EMOJI = "\U0001faf6"
+EMOJI = "\U0001f490"
 
 
 def main():
